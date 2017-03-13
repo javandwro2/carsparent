@@ -5,6 +5,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -38,11 +39,29 @@ public class CarsManagerWindow extends JFrame {
 		add(jButton);
 
 
+		JButton btnSaveToFile = new JButton("Save cars to file");
+		btnSaveToFile.setLocation(300, 60);
+		btnSaveToFile.setSize(100, 50);
+		add(btnSaveToFile);
+
 		CarEditPanel carEditPanel = new CarEditPanel(this);
 		carEditPanel.setLocation(400,0);
 		add(carEditPanel);
 
+
+		btnSaveToFile.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					carRepository.saveStateToFile();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+
 		carRepository = new CarRepository();
+
 
 		jButton.addActionListener(new AbstractAction() {
 			@Override

@@ -1,5 +1,7 @@
 package pl.jwrabel.javandwro2.cars;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +22,19 @@ public class CarRepository {
 		return carList;
 	}
 
-	public void saveStateToFile(){
-		System.out.println("SAVING TO FILE");
+	public void saveStateToFile() throws IOException {
+		FileWriter fileWriter = new FileWriter("cars.txt");
+
+		for (Car car : carList) {
+			fileWriter.write(car.toString());
+//			fileWriter.write("" + car);
+//			fileWriter.write(System.lineSeparator());
+			fileWriter.write("\n");
+		}
+
+		fileWriter.flush();
+		fileWriter.close();
+
 	}
 
 	public void setCarList(List<Car> carList) {
