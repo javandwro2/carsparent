@@ -36,11 +36,6 @@ public class CarsManagerWindow extends JFrame {
 		jButton.setSize(100, 50);
 		add(jButton);
 
-		JButton btnEdit = new JButton("Edytuj");
-		btnEdit.setLocation(300, 100);
-		btnEdit.setSize(100, 50);
-		add(btnEdit);
-
 		JLabel lblBrand = new JLabel("Brand");
 		lblBrand.setLocation(300, 200);
 		lblBrand.setSize(100, 20);
@@ -106,9 +101,9 @@ public class CarsManagerWindow extends JFrame {
 			}
 		});
 
-		btnEdit.addActionListener(new AbstractAction() {
+		carJList.addListSelectionListener(new ListSelectionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void valueChanged(ListSelectionEvent e) {
 				Car selecterCar = carJList.getSelectedValue();
 				if (selecterCar != null) {
 					txtBrand.setText(selecterCar.getBrand());
