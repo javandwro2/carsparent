@@ -3,7 +3,6 @@ package pl.jwrabel.javandwro2.cars;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.*;
 import java.util.List;
 
 /**
@@ -22,7 +21,7 @@ public class CarsManagerWindow extends JFrame {
 		setTitle("Cars manager");
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setSize(500, 300);
+		setSize(500, 600);
 		setLayout(null);
 
 		carJList = new JList<Car>();
@@ -31,9 +30,55 @@ public class CarsManagerWindow extends JFrame {
 		add(carJList);
 
 		JButton jButton = new JButton("Wczytaj");
-		jButton.setLocation(300,0);
-		jButton.setSize(100,50);
+		jButton.setLocation(300, 0);
+		jButton.setSize(100, 50);
 		add(jButton);
+
+		JButton btnEdit = new JButton("Edytuj");
+		btnEdit.setLocation(300, 100);
+		btnEdit.setSize(100, 50);
+		add(btnEdit);
+
+		JLabel lblBrand = new JLabel("Brand");
+		lblBrand.setLocation(300,200);
+		lblBrand.setSize(100, 20);
+		add(lblBrand);
+
+		JTextField txtBrand = new JTextField();
+		txtBrand.setLocation(300, 220);
+		txtBrand.setSize(100,50);
+		add(txtBrand);
+
+		JLabel lblModel = new JLabel("Model");
+		lblModel.setLocation(300,270);
+		lblModel.setSize(100, 20);
+		add(lblModel);
+
+		JTextField txtModel = new JTextField();
+		txtModel.setLocation(300, 290);
+		txtModel.setSize(100,50);
+		add(txtModel);
+
+		JLabel lblManYear = new JLabel("Manufacture year");
+		lblManYear.setLocation(300,340);
+		lblManYear.setSize(100, 20);
+		add(lblManYear);
+
+
+		JTextField txtManYear = new JTextField();
+		txtManYear.setLocation(300, 360);
+		txtManYear.setSize(100,50);
+		add(txtManYear);
+
+		JLabel lblPower = new JLabel("Power");
+		lblPower.setLocation(300,410);
+		lblPower.setSize(100, 20);
+		add(lblPower);
+
+		JTextField txtPower = new JTextField();
+		txtPower.setLocation(300, 430);
+		txtPower.setSize(100,50);
+		add(txtPower);
 
 		carRepository = new CarRepository();
 
@@ -50,6 +95,21 @@ public class CarsManagerWindow extends JFrame {
 				}
 
 				carJList.setListData(cars);
+			}
+		});
+
+		btnEdit.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Car selecterCar = carJList.getSelectedValue();
+				if(selecterCar != null){
+					txtBrand.setText(selecterCar.getBrand());
+					txtModel.setText(selecterCar.getModel());
+//					txtManYear.setText(Integer.toString(selecterCar.getManufactureYear()));
+//					txtManYear.setText(String.valueOf(Integer.valueOf(selecterCar.getManufactureYear())));
+					txtManYear.setText("" + selecterCar.getManufactureYear());
+					txtPower.setText("" + selecterCar.getPower());
+				}
 			}
 		});
 	}
