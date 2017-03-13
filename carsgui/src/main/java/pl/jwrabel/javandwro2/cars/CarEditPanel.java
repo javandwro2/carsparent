@@ -65,7 +65,7 @@ public class CarEditPanel extends JPanel {
 		add(txtPower);
 
 
-		JButton btnSave = new JButton("Zapisz");
+		JButton btnSave = new JButton("Save changes");
 		btnSave.setLocation(100, 0);
 		btnSave.setSize(100, 50);
 		add(btnSave);

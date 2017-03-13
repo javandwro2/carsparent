@@ -7,7 +7,7 @@ import java.util.List;
  * Created by jakubwrabel on 11.03.2017.
  */
 public class CarRepository {
-	private List<Car> carList; // null
+	private List<Car> carList;
 
 	public CarRepository() {
 		carList = new ArrayList<Car>();
@@ -18,6 +18,10 @@ public class CarRepository {
 
 	public List<Car> getCarList() {
 		return carList;
+	}
+
+	public void saveStateToFile(){
+		System.out.println("SAVING TO FILE");
 	}
 
 	public void setCarList(List<Car> carList) {

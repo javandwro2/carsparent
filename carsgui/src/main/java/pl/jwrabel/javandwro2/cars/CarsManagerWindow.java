@@ -32,7 +32,7 @@ public class CarsManagerWindow extends JFrame {
 		add(carJList);
 
 
-		JButton jButton = new JButton("Wczytaj");
+		JButton jButton = new JButton("Load from repository");
 		jButton.setLocation(300, 0);
 		jButton.setSize(100, 50);
 		add(jButton);
