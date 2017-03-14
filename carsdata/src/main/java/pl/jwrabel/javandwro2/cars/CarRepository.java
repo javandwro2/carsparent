@@ -55,6 +55,11 @@ public class CarRepository {
 			carList.add(car);
 		}
 
+		for (Car car : carList) {
+			System.out.println(car);
+		}
+
+
 //		List<Car> carsList = new ArrayList<>();
 //		for (String line : lines) {
 //			Car car = new Car(line);

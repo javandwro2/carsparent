@@ -56,7 +56,11 @@ public class CarsManagerWindow extends JFrame {
 		btnLoadFromFile.addActionListener(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				carRepository.loadDataFromFile();
+				try {
+					carRepository.loadDataFromFile();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 

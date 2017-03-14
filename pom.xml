@@ -5,7 +5,7 @@
   <groupId>pl.jwrabel.javandwro2.cars</groupId>
   <artifactId>cars-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
   <name>cars-parent</name>
   <url>http://maven.apache.org</url>
