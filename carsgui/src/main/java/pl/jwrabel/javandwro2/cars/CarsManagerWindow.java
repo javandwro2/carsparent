@@ -57,7 +57,7 @@ public class CarsManagerWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					carRepository.loadDataFromFile();
+					carRepository.loadDataFromFile("cars.txt");
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -71,7 +71,7 @@ public class CarsManagerWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					carRepository.saveStateToFile();
+					carRepository.saveStateToFile("cars.txt");
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -97,7 +97,6 @@ public class CarsManagerWindow extends JFrame {
 				}
 			}
 		});
-
 	}
 
 	private void updateListFromRepository() {

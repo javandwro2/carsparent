@@ -26,8 +26,8 @@ public class CarRepository {
 		return carList;
 	}
 
-	public void saveStateToFile() throws IOException {
-		FileWriter fileWriter = new FileWriter("cars.txt");
+	public void saveStateToFile(String path) throws IOException {
+		FileWriter fileWriter = new FileWriter(path);
 
 		for (Car car : carList) {
 			fileWriter.write(car.toString());
@@ -45,11 +45,10 @@ public class CarRepository {
 		this.carList = carList;
 	}
 
-	public void loadDataFromFile() throws IOException {
-		List<String> lines = Files.readLines(new File("cars.txt"), Charsets.UTF_8);
+	public void loadDataFromFile(String path) throws IOException {
+		List<String> lines = Files.readLines(new File(path), Charsets.UTF_8);
 
 		carList.clear();
-
 		for (String line : lines) {
 			Car car = new Car(line);
 			carList.add(car);
