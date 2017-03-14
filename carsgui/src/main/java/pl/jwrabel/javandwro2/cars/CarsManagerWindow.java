@@ -44,9 +44,21 @@ public class CarsManagerWindow extends JFrame {
 		btnSaveToFile.setSize(100, 50);
 		add(btnSaveToFile);
 
+		JButton btnLoadFromFile = new JButton("Load data from file");
+		btnLoadFromFile.setLocation(300, 200);
+		btnLoadFromFile.setSize(100, 50);
+		add(btnLoadFromFile);
+
 		CarEditPanel carEditPanel = new CarEditPanel(this);
 		carEditPanel.setLocation(400,0);
 		add(carEditPanel);
+
+		btnLoadFromFile.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				carRepository.loadDataFromFile();
+			}
+		});
 
 
 		btnSaveToFile.addActionListener(new AbstractAction() {

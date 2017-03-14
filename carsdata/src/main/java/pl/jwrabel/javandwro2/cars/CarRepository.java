@@ -1,5 +1,9 @@
 package pl.jwrabel.javandwro2.cars;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
+
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,6 +43,25 @@ public class CarRepository {
 
 	public void setCarList(List<Car> carList) {
 		this.carList = carList;
+	}
+
+	public void loadDataFromFile() throws IOException {
+		List<String> lines = Files.readLines(new File("cars.txt"), Charsets.UTF_8);
+
+		carList.clear();
+
+		for (String line : lines) {
+			Car car = new Car(line);
+			carList.add(car);
+		}
+
+//		List<Car> carsList = new ArrayList<>();
+//		for (String line : lines) {
+//			Car car = new Car(line);
+//			carsList.add(car);
+//		}
+//
+//		this.carList = carsList;
 	}
 }
 
