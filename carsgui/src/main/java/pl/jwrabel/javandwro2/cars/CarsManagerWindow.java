@@ -34,23 +34,23 @@ public class CarsManagerWindow extends JFrame {
 
 
 		JButton jButton = new JButton("Load from repository");
-		jButton.setLocation(300, 0);
-		jButton.setSize(100, 50);
+		jButton.setLocation(200, 0);
+		jButton.setSize(200, 50);
 		add(jButton);
 
 
 		JButton btnSaveToFile = new JButton("Save cars to file");
-		btnSaveToFile.setLocation(300, 60);
-		btnSaveToFile.setSize(100, 50);
+		btnSaveToFile.setLocation(200, 60);
+		btnSaveToFile.setSize(200, 50);
 		add(btnSaveToFile);
 
 		JButton btnLoadFromFile = new JButton("Load data from file");
-		btnLoadFromFile.setLocation(300, 200);
-		btnLoadFromFile.setSize(100, 50);
+		btnLoadFromFile.setLocation(200, 200);
+		btnLoadFromFile.setSize(200, 50);
 		add(btnLoadFromFile);
 
 		CarEditPanel carEditPanel = new CarEditPanel(this);
-		carEditPanel.setLocation(400,0);
+		carEditPanel.setLocation(400, 0);
 		add(carEditPanel);
 
 		btnLoadFromFile.addActionListener(new AbstractAction() {
@@ -61,6 +61,8 @@ public class CarsManagerWindow extends JFrame {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
+
+				updateListFromRepository();
 			}
 		});
 
@@ -82,15 +84,7 @@ public class CarsManagerWindow extends JFrame {
 		jButton.addActionListener(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				List<Car> carList = carRepository.getCarList();
-
-				// ZAMIANA LISTY NA TABLICĘ
-				Car[] cars = new Car[carList.size()];
-				for (int i = 0; i < carList.size(); i++) {
-					cars[i] = carList.get(i);
-				}
-
-				carJList.setListData(cars);
+				updateListFromRepository();
 			}
 		});
 
@@ -98,12 +92,24 @@ public class CarsManagerWindow extends JFrame {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				Car selectedCar = carJList.getSelectedValue();
-				if(selectedCar != null){
+				if (selectedCar != null) {
 					carEditPanel.setEditedCar(selectedCar);
 				}
 			}
 		});
 
+	}
+
+	private void updateListFromRepository() {
+		List<Car> carList = carRepository.getCarList();
+
+		// ZAMIANA LISTY NA TABLICĘ
+		Car[] cars = new Car[carList.size()];
+		for (int i = 0; i < carList.size(); i++) {
+			cars[i] = carList.get(i);
+		}
+
+		carJList.setListData(cars);
 	}
 
 }
