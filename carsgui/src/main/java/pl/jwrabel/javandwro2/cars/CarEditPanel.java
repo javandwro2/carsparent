@@ -70,6 +70,28 @@ public class CarEditPanel extends JPanel {
 		btnSave.setSize(100, 50);
 		add(btnSave);
 
+
+		JButton btnCreate = new JButton("Create new");
+		btnCreate.setLocation(100, 100);
+		btnCreate.setSize(100, 50);
+		add(btnCreate);
+
+		btnCreate.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String brand = txtBrand.getText();
+				String model = txtModel.getText();
+				int manYear = Integer.parseInt(txtManYear.getText());
+//				int manYear = Integer.valueOf(txtManYear.getText());
+				double power =  Double.parseDouble(txtPower.getText());
+
+				Car car = new Car(brand, model, manYear, power);
+				window.getCarRepository().getCarList().add(car);
+
+				window.updateListFromRepository();
+			}
+		});
+
 		btnSave.addActionListener(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
