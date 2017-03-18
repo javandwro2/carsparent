@@ -1,9 +1,11 @@
 package pl.jwrabel.javandwro2.cars.java8;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Created by jakubwrabel on 18.03.2017.
@@ -45,6 +47,15 @@ public class Streams {
 			}
 		}).collect(Collectors.toList());
 
+		IntStream.range(2, 30).forEach(x -> System.out.println(x));
+
+		int[] array = {1,2,3,4,5};
+		Arrays.stream(array).forEach(elem -> System.out.println(elem));
+
+
+		Object[] objects = list.stream().toArray();
+
+		list.stream().sorted((x, y) -> 0).forEach(x -> System.out.println(x));
 
 
 	}
