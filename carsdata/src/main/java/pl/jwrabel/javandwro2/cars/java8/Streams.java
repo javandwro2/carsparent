@@ -53,13 +53,6 @@ public class Streams {
 		list.stream().forEach(System.out::println);
 		list.stream().forEach(x -> System.out.println(x));
 
-//		list.forEach(System.out::println);
-//
-//		list.stream().forEach(x -> {
-//			System.out.println(x);
-//			System.out.println("BLA");
-//		});
-
 
 		// FILTROWANIE -> zwraca stream
 		list.stream().filter(x -> x < 2).forEach(x -> System.out.println(x));
@@ -128,40 +121,13 @@ public class Streams {
 		DoubleStream.of(1,2,3d);
 
 
-
-		List<String> strings = list.stream().map(x -> "Number: " + x).collect(Collectors.toList());
-
-//		List<Integer> evenList = list.stream().filter(x -> x % 2 == 0).collect(Collectors.toList());
-		List<Integer> evenList2 = list.stream().filter(new Predicate<Integer>() {
-			@Override
-			public boolean test(Integer integer) {
-				return integer % 2 == 0;
-			}
-		}).collect(Collectors.toList());
-
-
+		// ZAMIANA TABLICY NA STRUMIEN
 		int[] array = {1, 2, 3, 4, 5};
 		Arrays.stream(array).forEach(elem -> System.out.println(elem));
 
 
-		Object[] objects = list.stream().toArray();
-
-		list.stream().sorted((x, y) -> 0).forEach(x -> System.out.println(x));
-
-		//
-		list.stream().sorted();
-		// posortować
 
 
-		list.stream().allMatch(integer -> integer == 0);
-		list.stream().noneMatch(integer -> integer == 0);
-		list.stream().max((o1, o2) -> 1);
-		list.stream().min((o1, o2) -> 1);
-
-
-
-
-		list.stream().collect(Collectors.toSet());
 		list.stream().mapToInt(value -> value).summaryStatistics();
 		list.stream().mapToDouble(value -> value).summaryStatistics();
 
@@ -176,7 +142,6 @@ public class Streams {
 		int reduce = IntStream.range(0, 100).reduce(0, (sumR, x) -> sumR += x);
 //		list.stream().flatMap()
 
-//		parallelStream
-
+		// findFirst
 	}
 }

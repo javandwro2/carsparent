@@ -4,11 +4,12 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * Created by jakubwrabel on 20.03.2017.
  */
-public class MorseStreams {
+public class MorseStreams2 {
 	public static void main(String[] args) {
 		System.out.println(translateToMorse("Ratunku"));
 	}
@@ -23,31 +24,11 @@ public class MorseStreams {
 			"-.--", "--..", ".----", "..---", "...--", "....-", ".....",
 			"-....", "--...", "---..", "----.", "-----", "|"};
 
-	public static BiMap<String, String> biMap = HashBiMap.create();
-
-	static {
-		for (int i = 0; i < alpha.length; i++) {
-			biMap.put(alpha[i], dottie[i]);
-		}
-	}
 
 	public static String translateToMorse(String text) {
-		return Arrays.stream(text.split(""))./////////////////////////////////////////////////////////////
-
-		String[] split = text.split("");
-
-		StringBuilder morseString = new StringBuilder();
-
-		for (String element : split) {
-			String convertedChar = convertChar(element);
-			morseString.append(convertedChar);
-			morseString.append(" ");
-		}
-
-		return morseString.toString();
+//		return Arrays.stream(text.split("")).
+		IntStream.range(1, 100).filter(x -> x == 0).findFirst().getAsInt();
+		return "NONE";
 	}
 
-	public static String convertChar(String charToConvert) {
-		return biMap.get(charToConvert);
-	}
 }
