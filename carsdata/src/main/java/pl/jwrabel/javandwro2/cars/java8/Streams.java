@@ -110,7 +110,9 @@ public class Streams {
 		List<Integer> collect = list.stream().filter(x -> x < 10).collect(Collectors.toList());
 		// toSet
 		Set<Integer> collect1 = list.stream().filter(x -> x < 10).collect(Collectors.toSet());
-
+		// joining
+		String result = list.stream().map(value -> "" + value).collect(Collectors.joining(" "));
+		System.out.println(result);
 
 		// IntStream
 		IntStream.range(2, 30).forEach(x -> System.out.println(x));
@@ -141,16 +143,21 @@ public class Streams {
 		//
 		list.stream().sorted();
 		// posortować
+
+
 		list.stream().allMatch(integer -> integer == 0);
 		list.stream().noneMatch(integer -> integer == 0);
 		list.stream().max((o1, o2) -> 1);
 		list.stream().min((o1, o2) -> 1);
+
+
+
+
+		list.stream().collect(Collectors.toSet());
 		list.stream().mapToInt(value -> value).summaryStatistics();
 		list.stream().mapToDouble(value -> value).summaryStatistics();
 
 
-		list.stream().collect(Collectors.toSet());
-		list.stream().map(value -> "" + value).collect(Collectors.joining(" "));
 
 //		Map<Boolean, List<Person>> collect2
 //				= list.stream().collect(partitioningBy(x -> x < 1970));
@@ -158,10 +165,10 @@ public class Streams {
 
 		list.stream().collect(groupingBy(x -> x));
 
-		list.stream().peek().
 		int reduce = IntStream.range(0, 100).reduce(0, (sumR, x) -> sumR += x);
 //		list.stream().flatMap()
 
+//		parallelStream
 
 	}
 }

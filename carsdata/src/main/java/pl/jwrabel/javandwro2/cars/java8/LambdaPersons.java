@@ -2,6 +2,7 @@ package pl.jwrabel.javandwro2.cars.java8;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  * Created by jakubwrabel on 18.03.2017.
@@ -30,9 +31,26 @@ public class LambdaPersons {
 
 		//1. Posortować Nazwisko, imię, miasto
 		//2. Sprawdzenie, czy liczba jest liczbą pierwszą z użyciem lambd (IntStream)
+		int x = 4;
+		boolean isPrime = isPrime(x);
+		System.out.println("Jest liczbą pierwszą " + isPrime);
 
 
+		IntStream.range(2, 100).filter(y -> isPrime(y)).forEach(y -> System.out.println(y));
+
+		IntStream.range(2, 100).filter(y -> IntStream
+				.range(2, y / 2 + 1)
+				.noneMatch(number -> y % number == 0)
+		).forEach(y -> System.out.println(y));
+
+		//3. W jednym ciągu wywołań -> wypisać wszystkie osoby, wypisać tylko z Warszawy w formacie Nazwisko Imię, WARSZAWA
 
 
+	}
+
+	private static boolean isPrime(int y) {
+		return IntStream
+				.range(2, y / 2 + 1)
+				.noneMatch(number -> y % number == 0);
 	}
 }
