@@ -27,6 +27,7 @@ public class LambdaPersons {
 
 		personList.stream().sorted((x, y) -> 0).forEach(x -> System.out.println(x));
 
+
 		//1. Posortować Nazwisko, imię, miasto
 		//2. Sprawdzenie, czy liczba jest liczbą pierwszą z użyciem lambd (IntStream)
 

@@ -3,7 +3,7 @@ package pl.jwrabel.javandwro2.cars;
 /**
  * Created by jakubwrabel on 11.03.2017.
  */
-public class Car {
+public class Car implements  Comparable {
 	private String brand;
 	private String model;
 	private int manufactureYear;
@@ -72,5 +72,10 @@ public class Car {
 
 	public void setBrand(String brand) {
 		this.brand = brand;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return 0;
 	}
 }
