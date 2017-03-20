@@ -44,13 +44,6 @@ public class MorseStreams {
 	}
 
 	public static String convertChar(String charToConvert, boolean toMorse) {
-		charToConvert = charToConvert.toLowerCase();
-
-		if (toMorse) {
-			return biMap.get(charToConvert);
-		} else {
-			return biMap.inverse().get(charToConvert);
-		}
-
+		return biMap.get(charToConvert);
 	}
 }
