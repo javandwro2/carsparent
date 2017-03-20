@@ -4,6 +4,7 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * Created by jakubwrabel on 20.03.2017.
@@ -32,22 +33,8 @@ public class MorseStreams {
 	}
 
 	public static String translateToMorse(String text) {
-		return Arrays.stream(text.split(""))./////////////////////////////////////////////////////////////
-
-		String[] split = text.split("");
-
-		StringBuilder morseString = new StringBuilder();
-
-		for (String element : split) {
-			String convertedChar = convertChar(element);
-			morseString.append(convertedChar);
-			morseString.append(" ");
-		}
-
-		return morseString.toString();
-	}
-
-	public static String convertChar(String charToConvert) {
-		return biMap.get(charToConvert);
+		return Arrays.stream(text.split(""))
+				.map(letter -> biMap.get(letter.toLowerCase()))
+				.collect(Collectors.joining(" "));
 	}
 }

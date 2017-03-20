@@ -125,11 +125,15 @@ public class Streams {
 		int[] array = {1, 2, 3, 4, 5};
 		Arrays.stream(array).forEach(elem -> System.out.println(elem));
 
+		// ZAMIANA NA INT STREAM
+		list.stream().mapToInt(value -> value);
+		// ZAMIANA NA DOUBLE STREAM
+		list.stream().mapToDouble(value -> value);
 
-
-
-		list.stream().mapToInt(value -> value).summaryStatistics();
-		list.stream().mapToDouble(value -> value).summaryStatistics();
+		// SUMMARY STATISTICS (INT STREAM, DOUBLE STREAM)
+		IntSummaryStatistics intSummaryStatistics = list.stream().mapToInt(value -> value).summaryStatistics();
+		double average = intSummaryStatistics.getAverage();
+		int max = intSummaryStatistics.getMax();
 
 
 
