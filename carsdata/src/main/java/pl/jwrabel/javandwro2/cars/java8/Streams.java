@@ -112,6 +112,7 @@ public class Streams {
 		Set<Integer> collect1 = list.stream().filter(x -> x < 10).collect(Collectors.toSet());
 		// joining (Tylko dla Stream<String>)
 		String result = list.stream().map(value -> "" + value).collect(Collectors.joining(" "));
+
 		String result2 = list.stream()
 				.map(value -> "" + value)
 				.collect(Collectors.joining(" ", "PREFIX", "SUFFIX"));

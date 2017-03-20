@@ -4,6 +4,7 @@ import com.sun.tools.javadoc.Start;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -52,6 +53,16 @@ public class LambdaPersons {
 				.map(p -> p.getLastName() + " " + p.getFirstName() + ", " + p.getCity().toUpperCase())
 				.forEach(p -> System.out.println(p));
 
+		// 4. z użyciem collectora joining wypisać osoby (stworzyć Stringa)
+		// START
+		// Adam Kowalski
+		// ...
+		// Piotr Kowalski
+		// KONIEC
+		String result = personList.stream()
+				.map(p -> p.getFirstName() + " " + p.getLastName())
+				.collect(Collectors.joining("\n", "START\n", "\nEND"));
+		System.out.println(result);
 
 	}
 
