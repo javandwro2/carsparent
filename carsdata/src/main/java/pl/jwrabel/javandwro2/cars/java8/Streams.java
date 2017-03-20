@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.partitioningBy;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by jakubwrabel on 18.03.2017.
@@ -18,6 +19,14 @@ public class Streams {
 		list.add(1);
 		list.add(2);
 		list.add(3);
+
+		List<Person> personList = new ArrayList<>();
+		personList.add(new Person("Adam", "Nowak", "Wrocław"));
+		personList.add(new Person("Adam", "Kowalski", "Warszawa"));
+		personList.add(new Person("Jerzy", "Polański", "Warszawa"));
+		personList.add(new Person("Piotr", "Mickiewicz", "Sosnowiec"));
+		personList.add(new Person("Jan", "Kowalski", "Wrocław"));
+
 //
 		// jeden argument, jedna operacja w metodzie
 		list.stream().forEach(elem -> System.out.println(elem));
@@ -27,7 +36,7 @@ public class Streams {
 		}
 
 		// 2 lub więcej parametrów -> musimy użyć nawiasów (x, y)
-		list.stream().sorted( (x, y) -> 0);
+		list.stream().sorted((x, y) -> 0);
 
 		list.stream().sorted(new Comparator<Integer>() {
 			@Override
@@ -44,7 +53,7 @@ public class Streams {
 		});
 
 		// 4. więcej operacji, metoda zwraca "Coś"
-		list.stream().sorted((x,y) -> {
+		list.stream().sorted((x, y) -> {
 			System.out.println(x);
 			return 0;
 		});
@@ -71,16 +80,16 @@ public class Streams {
 		// PEEK -> FOR-EACH zwracający strumień
 		list.stream()
 				.peek(x -> System.out.println("WSZYSTKIE: " + x))
-				.filter(x -> x % 2 ==0)
-				.forEach(x -> System.out.println("Parzyste: "+ x));
+				.filter(x -> x % 2 == 0)
+				.forEach(x -> System.out.println("Parzyste: " + x));
 
 		// SORTOWANIE
 		list.stream().sorted().forEach(x -> System.out.println(x));
 		// SORTOWANIE, PRZYJMUJE COMPARATOR
 		list.stream().sorted((x, y) -> {
-			if(x > y){
+			if (x > y) {
 				return 1;
-			} else if (x == y){
+			} else if (x == y) {
 				return 0;
 			}
 			return -1;
@@ -100,7 +109,7 @@ public class Streams {
 
 		// COLLECTORS
 		// toList
-		List<Integer> collect = list.stream().filter(x -> x < 10).collect(Collectors.toList());
+		List<Integer> collect = list.stream().filter(x -> x < 10).collect(toList());
 		// toSet
 		Set<Integer> collect1 = list.stream().filter(x -> x < 10).collect(Collectors.toSet());
 		// joining (Tylko dla Stream<String>)
@@ -111,6 +120,25 @@ public class Streams {
 				.collect(Collectors.joining(" ", "PREFIX", "SUFFIX"));
 		System.out.println(result);
 
+		// partitioningBy
+		Map<Boolean, List<Person>> adam = personList.stream()
+				.collect(partitioningBy(p -> p.getFirstName().equals("Adam")));
+		List<Person> people = adam.get(false);// nie spełniają warunku
+		List<Person> peopleAdams = adam.get(true);// spełniają warunek
+
+		// groupingBy
+		Map<String, List<Person>> firstNamesMap = personList.stream().collect(groupingBy(p -> p.getFirstName()));
+		List<Person> adam1 = firstNamesMap.get("Adam");
+		List<Person> piotr = firstNamesMap.get("Piotr");
+
+		for(Map.Entry<String, List<Person>> entry : firstNamesMap.entrySet()){
+			System.out.println("MAP KEY: " + entry.getKey());
+			System.out.println("MAP VALUE: " + entry.getValue());
+		}
+
+		Set<String> keys = firstNamesMap.keySet();
+		Collection<List<Person>> values = firstNamesMap.values();
+
 
 		// STRUMIENIE RÓWNOLEGŁE (WIELOWĄTKOWE)
 		list.parallelStream().forEach(x -> System.out.println(x));
@@ -118,7 +146,7 @@ public class Streams {
 		// IntStream
 		IntStream.range(2, 30).forEach(x -> System.out.println(x));
 		// DoubleStream
-		DoubleStream.of(1,2,3d);
+		DoubleStream.of(1, 2, 3d);
 
 
 		// ZAMIANA TABLICY NA STRUMIEN
@@ -137,11 +165,6 @@ public class Streams {
 
 
 
-//		Map<Boolean, List<Person>> collect2
-//				= list.stream().collect(partitioningBy(x -> x < 1970));
-
-
-		list.stream().collect(groupingBy(x -> x));
 
 		int reduce = IntStream.range(0, 100).reduce(0, (sumR, x) -> sumR += x);
 //		list.stream().flatMap()

@@ -3,6 +3,7 @@ package pl.jwrabel.javandwro2.cars.java8;
 import com.sun.tools.javadoc.Start;
 
 import java.util.ArrayList;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -63,6 +64,23 @@ public class LambdaPersons {
 				.map(p -> p.getFirstName() + " " + p.getLastName())
 				.collect(Collectors.joining("\n", "START\n", "\nEND"));
 		System.out.println(result);
+
+		// 5. z użyciem summary statistics
+		// podać średnią długość nazwisk osób
+		IntSummaryStatistics intSummaryStatistics
+				= personList.stream().mapToInt(p -> p.getLastName().length()).summaryStatistics();
+
+		double avgLastNameLenght = intSummaryStatistics.getAverage();
+		System.out.println("Srednia dlugosc nazwiska " + avgLastNameLenght);
+
+		System.out.println("Srednia dlugosc nazwiska " + intSummaryStatistics.getAverage());
+
+		// 6. Wypisać osoby w postaci
+		// WARSZAWA
+		// 	Adam Nowak
+		// WROCŁAW
+		//  Piotr Kowalski
+		// 	Adam Kowalski
 
 	}
 

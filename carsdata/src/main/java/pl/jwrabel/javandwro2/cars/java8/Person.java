@@ -22,6 +22,15 @@ public class Person {
 		this.firstName = firstName;
 	}
 
+	@Override
+	public String toString() {
+		return "Person{" +
+				"firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", city='" + city + '\'' +
+				'}';
+	}
+
 	public String getLastName() {
 		return lastName;
 	}
