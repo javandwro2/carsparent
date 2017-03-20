@@ -110,9 +110,16 @@ public class Streams {
 		List<Integer> collect = list.stream().filter(x -> x < 10).collect(Collectors.toList());
 		// toSet
 		Set<Integer> collect1 = list.stream().filter(x -> x < 10).collect(Collectors.toSet());
-		// joining
+		// joining (Tylko dla Stream<String>)
 		String result = list.stream().map(value -> "" + value).collect(Collectors.joining(" "));
+		String result2 = list.stream()
+				.map(value -> "" + value)
+				.collect(Collectors.joining(" ", "PREFIX", "SUFFIX"));
 		System.out.println(result);
+
+
+		// STRUMIENIE RÓWNOLEGŁE (WIELOWĄTKOWE)
+		list.parallelStream().forEach(x -> System.out.println(x));
 
 		// IntStream
 		IntStream.range(2, 30).forEach(x -> System.out.println(x));

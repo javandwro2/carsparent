@@ -1,5 +1,7 @@
 package pl.jwrabel.javandwro2.cars.java8;
 
+import com.sun.tools.javadoc.Start;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -44,6 +46,11 @@ public class LambdaPersons {
 		).forEach(y -> System.out.println(y));
 
 		//3. W jednym ciągu wywołań -> wypisać wszystkie osoby, wypisać tylko z Warszawy w formacie Nazwisko Imię, WARSZAWA
+		personList.stream()
+				.peek(p -> System.out.println(p.getFirstName() + " " + p.getLastName()))
+				.filter(p -> p.getCity().equals("Warszawa"))
+				.map(p -> p.getLastName() + " " + p.getFirstName() + ", " + p.getCity().toUpperCase())
+				.forEach(p -> System.out.println(p));
 
 
 	}
